@@ -1,0 +1,207 @@
+﻿@model IEnumerable<PortfolioManager.Models.ViewModels.PostViewModel>
+@{
+    Layout = "_Layout";
+    ViewData["ActivePage"] = "Posts";
+}
+
+@if (ViewBag.IsSuccess == true)
+{
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> The database has been adjusted.
+    </div>
+}
+else if (ViewBag.IsSuccess == false)
+{
+    {
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> Something went wrong, please contact support.
+        </div>
+    }
+}
+
+
+<div class="col-8 mx-auto">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Publish Date</th>
+                <th><button type="button" class="btn btn-success create-post"><i class="fas fa-plus"></i></button></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model)
+            {
+                <tr>
+                    <th scope="row">@post.Id</th>
+                    <td>@post.PostName</td>
+                    <td>@post.PublishDate.ToString("MM/dd/yyyy hh:mm tt")</td>
+                    <td>
+                        <button data-postid="@post.Id" data-postname="@post.PostName" data-postdesc="@post.Content" type="button" class="btn btn-primary edit-post"><i class="fas fa-edit"></i></button>
+                        <button data-postid="@post.Id" data-postname="@post.PostName" type="button" class="btn btn-danger delete-post"><i class="far fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="delete-post-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete <strong id="postName"></strong>?
+            </div>
+            <div class="modal-footer">
+                <form asp-controller="Home" asp-action="Posts" method="post">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input name="Id" type="hidden" id="postId" />
+                    <input name="Action" type="hidden" value="delete" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Modal -->
+<div class="modal fade" id="create-post-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-controller="Home" asp-action="Posts" method="post">
+                <input name="Action" type="hidden" value="create" />
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label name="PostName">Post Title</label>
+                        <input type="text" name="PostName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Post Description</label>
+                        <textarea class="form-control" style="height: auto" name="Content" rows="3" id="create-post-editor"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="edit-post-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-controller="Home" asp-action="Posts" method="post">
+                <input name="Action" type="hidden" value="edit" />
+                <input name="Id" type="hidden" id="edit-post-id" />
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label name="PostName">Post Title</label>
+                        <input type="text" name="PostName" class="form-control" id="edit-post-name"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Post Description</label>
+                        <textarea class="form-control" name="Content" rows="3" id="edit-post-desc"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(".delete-post").on('click',
+            function () {
+                var t = $(this);
+                var postId = t.data("postid");
+                var postName = t.data("postname");
+
+                $('#postId').val(postId);
+                $('#postName').text(postName);
+
+                $("#delete-post-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+        $(".create-post").on('click',
+            function () {
+                $("#create-post-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+        $(".edit-post").on('click',
+            function () {
+                var t = $(this);
+                var postId = t.data("postid");
+                var postName = t.data("postname");
+                var postDesc = t.data("postdesc");
+
+                $('#edit-post-id').val(postId);
+                $('#edit-post-name').val(postName);
+                $('#edit-post-desc').val(postDesc);
+
+                // First we need to destroy summernote in order to reset the text value
+                $('#edit-post-desc').summernote('destroy');
+
+                //Init Summer note
+                $('#edit-post-desc').summernote({
+                    tabsize: 2,
+                    height: 100,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen', 'codeview', 'help', 'undo', 'redo']]
+                    ]
+                });
+
+                $("#edit-post-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+
+        $('#create-post-editor').summernote({
+            placeholder: 'Your content',
+            tabsize: 2,
+            height: 100,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help', 'undo', 'redo']]
+            ]
+        });
+    </script>
+}

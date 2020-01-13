@@ -1,0 +1,255 @@
+﻿@using Newtonsoft.Json
+@model IEnumerable<PortfolioManager.Models.ViewModels.UserViewModel>
+@{
+    Layout = "_Layout";
+    ViewData["ActivePage"] = "Users";
+}
+
+@if (ViewBag.IsSuccess == true)
+{
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> The database has been adjusted.
+    </div>
+}
+else if (ViewBag.IsSuccess == false)
+{
+    {
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> Something went wrong, please contact support.
+        </div>
+    }
+}
+
+
+<div class="col-10 mx-auto">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">E-Mail</th>
+                <th scope="col">Confirmed Email</th>
+                <th scope="col">Roles</th>
+                <th><button type="button" class="btn btn-success create-user"><i class="fas fa-plus"></i></button></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+
+                <tr>
+                    <th scope="row">@user.Id</th>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    @if (user.EmailConfirmed)
+                    {
+                        <td class="success">Yes</td>
+                    }
+                    else
+                    {
+                        <td class="danger">No</td>
+                    }
+                    <td>@foreach (var role in user.UserRoles.Result)
+                        {
+                            @role
+                        }
+                    </td>
+                    <td>
+                        @if (user.IsApproved)
+                        {
+                            <button data-userid="@user.Id" data-username="@user.UserName" type="button" class="btn btn-danger unapprove-user"><i class="fas fa-ban"></i></button>
+                        }
+                        else
+                        {
+                            <button data-userid="@user.Id" data-username="@user.UserName" type="button" class="btn btn-success approve-user"><i class="fas fa-check"></i></button>
+
+                        }
+                        <button data-userid="@user.Id" data-username="@user.UserName" data-useremail="@user.Email" data-useremailconfirmed="@user.EmailConfirmed" data-userrole="@foreach(var role in user.UserRoles.Result){@role}" type="button" class="btn btn-primary edit-user"><i class="fas fa-edit"></i></button>
+                        <button data-userid="@user.Id" data-username="@user.UserName" type="button" class="btn btn-danger delete-user"><i class="far fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Approve User Modal -->
+<div class="modal fade" id="approve-user-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Approve User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to approve <strong id="approve-username"></strong>?
+            </div>
+            <div class="modal-footer">
+                <form asp-controller="Home" asp-action="Users" method="post">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input name="Id" type="hidden" id="approve-userid" />
+                    <input name="Action" type="hidden" value="approval" />
+                    <button type="submit" class="btn btn-success">Approve</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- UnApprove User Modal -->
+<div class="modal fade" id="unapprove-user-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Unapprove User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to unapprove <strong id="unapprove-user"></strong>?
+            </div>
+            <div class="modal-footer">
+                <form asp-controller="Home" asp-action="Users" method="post">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input name="Id" type="hidden" id="unapprove-userid" />
+                    <input name="Action" type="hidden" value="unapproval" />
+                    <button type="submit" class="btn btn-danger">Unapprove</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="delete-user-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete <strong id="delete-username"></strong>?
+            </div>
+            <div class="modal-footer">
+                <form asp-controller="Home" asp-action="Users" method="post">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input name="Id" type="hidden" id="delete-userid" />
+                    <input name="Action" type="hidden" value="delete" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="edit-user-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-controller="Home" asp-action="Users" method="post">
+                <input name="Action" type="hidden" value="edit" />
+                <input name="Id" type="hidden" id="edit-user-id" />
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label name="UserName">Username</label>
+                        <input type="text" name="UserName" class="form-control" id="edit-user-name" />
+                    </div>
+                    <div class="form-group">
+                        <label name="Email">E-mail Address</label>
+                        <input type="email" name="Email" class="form-control" id="edit-user-email"/>
+                    </div>
+                    <div class="form-group">
+                        <select name="NewRole" class="custom-select" id="edit-user-roles">
+                            <option value="None" id="default-option">None</option>
+                            @foreach (var role in ViewBag.Roles)
+                            {
+                                <option value="@role.Id">@role.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(".approve-user").on('click',
+            function () {
+                var t = $(this);
+                var userId = t.data("userid");
+                var userName = t.data("username");
+
+                $('#approve-userid').val(userId);
+                $('#approve-username').text(userName);
+
+                $("#approve-user-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+        $(".unapprove-user").on('click',
+            function () {
+                var t = $(this);
+                var userId = t.data('userid');
+                var userName = t.data('username');
+
+                $('#unapprove-userid').val(userId);
+                $('#unapprove-user').text(userName);
+
+                $("#unapprove-user-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+        $(".delete-user").on('click',
+            function () {
+                var t = $(this);
+                var userId = t.data('userid');
+                var userName = t.data('username');
+
+                $('#delete-userid').val(userId);
+                $('#delete-username').text(userName);
+
+                $('#delete-user-modal').modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+        $(".edit-user").on('click',
+            function () {
+                var t = $(this);
+                var userId = t.data('userid');
+                var userName = t.data('username');
+                var userEmail = t.data('useremail');
+                var userRole = t.data('userrole');
+
+                // Get all role names from select box and set the user's current role as selected
+                $("#edit-user-roles option").each(function () {
+                    $(this).prop("selected", false);
+                    if ($(this).text() == userRole) {
+                        $(this).prop("selected", true);
+                    } else {
+                        $("#default-option").prop("selected",true);
+                    }
+                });
+
+                $('#edit-user-id').val(userId);
+                $('#edit-user-name').val(userName);
+                $('#edit-user-email').val(userEmail);
+
+                $('#edit-user-modal').modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+    </script>
+}

@@ -1,0 +1,206 @@
+﻿@model IEnumerable<PortfolioManager.Models.ViewModels.NewsViewModel>
+@{
+    Layout = "_Layout";
+    ViewData["ActivePage"] = "News";
+}
+
+@if (ViewBag.IsSuccess == true)
+{
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> The database has been adjusted.
+    </div>
+}
+else if (ViewBag.IsSuccess == false)
+{
+    {
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> Something went wrong, please contact support.
+        </div>
+    }
+}
+
+
+<div class="col-8 mx-auto">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Publish Date</th>
+                <th><button type="button" class="btn btn-success create-news"><i class="fas fa-plus"></i></button></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var news in Model)
+            {
+                <tr>
+                    <th scope="row">@news.Id</th>
+                    <td>@news.NewsTitle</td>
+                    <td>@news.NewsPublishDate.ToString("MM/dd/yyyy hh:mm tt")</td>
+                    <td>
+                        <button data-newsid="@news.Id" data-newstitle="@news.NewsTitle" data-newscontent="@news.NewsContent" type="button" class="btn btn-primary edit-news"><i class="fas fa-edit"></i></button>
+                        <button data-newsid="@news.Id" data-newstitle="@news.NewsTitle" type="button" class="btn btn-danger delete-news"><i class="far fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="delete-news-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete News</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete <strong id="newsTitle"></strong>?
+            </div>
+            <div class="modal-footer">
+                <form asp-controller="Home" asp-action="News" method="post">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input name="Id" type="hidden" id="newsId" />
+                    <input name="Action" type="hidden" value="delete" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Modal -->
+<div class="modal fade" id="create-news-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create News</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-controller="Home" asp-action="News" method="post">
+                <input name="Action" type="hidden" value="create" />
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label name="NewsTitle">News Title</label>
+                        <input type="text" name="NewsTitle" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>News Content</label>
+                        <textarea class="form-control" name="NewsContent" rows="3" id="create-news-editor"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="edit-news-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-controller="Home" asp-action="News" method="post">
+                <input name="Action" type="hidden" value="edit" />
+                <input name="Id" type="hidden" id="edit-news-id" />
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label name="NewsName">News Title</label>
+                        <input type="text" name="NewsTitle" class="form-control" id="edit-news-title" />
+                    </div>
+                    <div class="form-group">
+                        <label>News Content</label>
+                        <textarea class="form-control" name="NewsContent" rows="3" id="edit-news-content"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(".delete-news").on('click',
+            function () {
+                var t = $(this);
+                var newsId = t.data("newsid");
+                var newsTitle = t.data("newstitle");
+
+                $('#newsId').val(newsId);
+                $('#newsTitle').text(newsTitle);
+
+                $("#delete-news-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+        $(".create-news").on('click',
+            function () {
+                $("#create-news-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+        $(".edit-news").on('click',
+            function () {
+                var t = $(this);
+                var newsId = t.data("newsid");
+                var newsTitle = t.data("newstitle");
+                var newsContent = t.data("newscontent");
+
+                $('#edit-news-id').val(newsId);
+                $('#edit-news-title').val(newsTitle);
+                $('#edit-news-content').val(newsContent);
+
+                // First we need to destroy summernote in order to reset the text value
+                $('#edit-news-content').summernote('destroy');
+
+                // Init SummerNote
+                $('#edit-news-content').summernote({
+                    tabsize: 2,
+                    height: 100,
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen', 'codeview', 'help', 'undo', 'redo']]
+                    ]
+                });
+
+                $("#edit-news-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+
+        $('#create-news-editor').summernote({
+            placeholder: 'Your content',
+            tabsize: 2,
+            height: 100,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help', 'undo', 'redo']]
+            ]
+        });
+    </script>
+}

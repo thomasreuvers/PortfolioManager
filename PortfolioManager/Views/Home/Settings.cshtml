@@ -1,0 +1,89 @@
+﻿@model PortfolioManager.Models.ViewModels.SettingsViewModel
+@using PortfolioManager.Areas.Identity.Pages.Account.Manage
+@{
+    Layout = "_Layout";
+    ViewData["ActivePage"] = "Settings";
+}
+@if (ViewBag.IsSuccess == true)
+{
+<div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Success!</strong> Your settings have been saved.
+</div>
+}
+else if (ViewBag.IsSuccess == false)
+{
+    {
+<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error!</strong> Something went wrong when saving your settings. Please contact support.
+</div>
+    }
+}
+
+<div class="col-4 mx-auto">
+    <br />
+    <h2 class="text-center">Account Settings</h2>
+    <hr />
+    <form asp-controller="Home" asp-action="Settings" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label asp-for="Username"></label>
+            <input value="@Model.Username" class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OldPassword"></label>
+            <input asp-for="OldPassword" class="form-control" />
+            <span asp-validation-for="OldPassword" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NewPassword"></label>
+            <input asp-for="NewPassword" class="form-control" />
+            <span asp-validation-for="NewPassword" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmPassword"></label>
+            <input asp-for="ConfirmPassword" class="form-control" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        
+        <br />
+        <div class="custom-file">
+            <label id="file-label" class="custom-file-label">Profile Picture</label>
+            <input id="file-input" name="ProfilePicture" type="file" class="custom-file-input" accept="image/*" />
+        </div>
+        <br />
+        <br />
+        <div class="text-center">
+            @if (Model.ImageFileName != null)
+            {
+                <img id="image-preview" src="~/@Model.ImageFileName" alt="user-profile-picture" width="100" height="100" style="border-radius: 50%" />
+            }
+            else
+            {
+                <img id="image-preview" alt="user-profile-picture" width="100" height="100" style="border-radius: 50%" />
+            }
+        </div>
+        <br />
+
+        <button type="submit" class="btn btn-primary col-12">Save</button>
+
+    </form>
+</div>
+
+<hr />
+
+<div class="col-4 mx-auto">
+    <h2 class="text-center">2Factor Settings</h2>
+    <hr />
+    
+    <!-- Hier komt de 2factor partial -->
+
+</div>

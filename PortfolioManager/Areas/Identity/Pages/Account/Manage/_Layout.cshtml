@@ -1,0 +1,213 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using PortfolioManager.Models
+@using PortfolioManager.Views.Shared
+@inject UserManager<ApplicationUser> UserManager
+<html>
+<head>
+    <title>TCMS - Home</title>
+    <link rel="stylesheet" href="~/css/lumen.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/main-cms.css" />
+</head>
+
+
+<body>
+
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        <div class="bg-custom-color border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">TCMS</div>
+            <div class="side-profile">
+                <img src="~/images/img_avatar.png" />
+                <br />
+                <p>@UserManager.GetUserName(User)</p>
+            </div>
+            <div class="list-group list-group-flush">
+                <a asp-action="Index" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                    Dashboard
+                    <i class="fas fa-home"></i>
+                </a>
+                <a asp-action="Posts" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                    Posts
+                    <i class="fas fa-envelope"></i>
+                </a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-action="Users" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                        Users
+                        <i class="fas fa-user-friends"></i>
+                    </a>
+                    <a href="#" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                        Roles
+                        <i class="fas fa-user-tag"></i>
+                    </a>
+                    <a asp-action="News" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                        News
+                        <i class="fas fa-newspaper"></i>
+                    </a>
+                }
+                <a href="#" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                    Settings
+                    <i class="fas fa-cogs"></i>
+                </a>
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action active">
+                    Account
+                    <i class="fas fa-user-alt"></i>
+                </a>
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})" method="post" id="logoutForm">
+                    <button type="submit" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                        Logout
+                        <i class="fas fa-power-off"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="sidebar-footer">
+                <span>Version 1.0.0</span>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Header -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-bars"></i></button>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Hi, @UserManager.GetUserName(User)
+                                <img style="border-radius: 50%;" width="30" height="30" src="~/images/img_avatar.png" />
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="dropdown-item">Account</a>
+                                <a href="#" class="dropdown-item">Placeholder</a>
+                                <div class="dropdown-divider"></div>
+                                <form style="margin: 0;" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})" method="post" id="logoutForm">
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Page Content -->
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/d9cad782c3.js" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"
+            asp-fallback-src="~/Identity/lib/jquery-validation/dist/jquery.validate.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator"
+            crossorigin="anonymous"
+            integrity="sha384-rZfj/ogBloos6wzLGpPkkOr/gpkBNLZ6b6yLy4o+ok+t/SAKlL5mvXLr0OXNi1Hp">
+    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.9/jquery.validate.unobtrusive.min.js"
+            asp-fallback-src="~/Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive"
+            crossorigin="anonymous"
+            integrity="sha384-ifv0TYDWxBHzvAk2Z0n8R434FL1Rlv/Av18DXE43N/1rvHyOG4izKst0f2iSLdds">
+    </script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+        // NEWS
+        $(".delete-news").on('click',
+            function () {
+                var t = $(this);
+                var newsId = t.data("newsid");
+                var newsTitle = t.data("newstitle");
+
+                $('#newsId').val(newsId);
+                $('#newsTitle').text(newsTitle);
+
+                $("#delete-news-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+        $(".create-news").on('click',
+            function () {
+                $("#create-news-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+        $(".edit-news").on('click',
+            function () {
+                var t = $(this);
+                var newsId = t.data("newsid");
+                var newsTitle = t.data("newstitle");
+                var newsContent = t.data("newscontent");
+
+                $('#edit-news-id').val(newsId);
+                $('#edit-news-title').val(newsTitle);
+                $('#edit-news-content').val(newsContent);
+
+                $("#edit-news-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+
+        // POST
+        $(".delete-post").on('click',
+            function () {
+                var t = $(this);
+                var postId = t.data("postid");
+                var postName = t.data("postname");
+
+                $('#postId').val(postId);
+                $('#postName').text(postName);
+
+                $("#delete-post-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+        $(".create-post").on('click',
+            function () {
+                $("#create-post-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+        $(".edit-post").on('click',
+            function () {
+                var t = $(this);
+                var postId = t.data("postid");
+                var postName = t.data("postname");
+                var postDesc = t.data("postdesc");
+
+                $('#edit-post-id').val(postId);
+                $('#edit-post-name').val(postName);
+                $('#edit-post-desc').val(postDesc);
+
+                $("#edit-post-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+
+        // Profile Picture Upload
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#image-preview').attr('src', e.target.result);
+                    $('#image-preview').hide();
+                    $('#file-label').text(input.files[0].name);
+                    $('#image-preview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#file-input").change(function() {
+            readURL(this);
+        });
+    </script>
+</body>
+
+</html>

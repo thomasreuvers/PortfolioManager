@@ -1,0 +1,55 @@
+﻿@model PortfolioManager.Models.ViewModels.IndexViewModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
+    Layout = "_Layout";
+    ViewData["ActivePage"] = "Index";
+}
+<div class="col-12 page-title"><h1>Dashboard</h1></div>
+
+@if(ViewBag.IsApproved != null && ViewBag.IsApproved)
+{
+    <div class="col-6 mx-auto text-center welcome-user">
+        <h3>Welcome back, <b>@UserManager.GetUserName(User)</b>!</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <h5 class="card-header">Recent Post</h5>
+                <div class="card-body">
+                    <h5 class="card-title">@Model.RecentPost.PostName</h5>
+                    <p class="card-text">@Html.Raw(Model.RecentPost.Content)</p>
+                </div>
+                <div class="card-footer">
+                    <p class="card-text"><small class="text-muted">Created at @Model.RecentPost.PublishDate.ToString("MM/dd/yyyy hh:mm tt")</small></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <h5 class="card-header">News</h5>
+                <div class="card-body">
+                    <h5 class="card-title">@Model.RecentNews.NewsTitle</h5>
+                    <p class="card-text">@Html.Raw(Model.RecentNews.NewsContent)</p>
+                </div>
+                <div class="card-footer">
+                    <p class="card-text"><small class="text-muted">Published by @Model.RecentNews.WrittenBy at @Model.RecentNews.NewsPublishDate.ToString("MM/dd/yyyy hh:mm tt")</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-6 mx-auto text-center welcome-user">
+        <h3>Hi there, <b>@UserManager.GetUserName(User)</b>!</h3>
+    </div>
+
+    <div class="col-6 mx-auto">
+        <p>Why are you seeing this message? Well simple! Your account has NOT yet been approved by an administrator.
+            When you register for the first time your account will be reviewed by an administrator to prevent stuff and for safety.
+            So please check back later!</p>
+    </div>
+}
+
