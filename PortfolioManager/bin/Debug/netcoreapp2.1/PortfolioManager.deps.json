@@ -29,7 +29,7 @@
           "Microsoft.NETCore.App": "2.1.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.10",
           "Newtonsoft.Json": "12.0.3",
-          "Pomelo.EntityFrameworkCore.MySql": "2.1.0",
+          "Pomelo.EntityFrameworkCore.MySql": "2.1.1",
           "jquery-qrcode": "1.0.0"
         },
         "runtime": {
@@ -232,7 +232,7 @@
           "lib/netstandard1.6/NuGet.Frameworks.dll": {}
         }
       },
-      "Pomelo.EntityFrameworkCore.MySql/2.1.0": {
+      "Pomelo.EntityFrameworkCore.MySql/2.1.1": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "2.1.1",
           "Microsoft.EntityFrameworkCore.Relational": "2.1.1",
@@ -242,8 +242,8 @@
         },
         "runtime": {
           "lib/netstandard2.0/Pomelo.EntityFrameworkCore.MySql.dll": {
-            "assemblyVersion": "2.1.0.0",
-            "fileVersion": "2.1.0.0"
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.0"
           }
         },
         "compile": {
@@ -3630,12 +3630,12 @@
       "path": "nuget.frameworks/4.7.0",
       "hashPath": "nuget.frameworks.4.7.0.nupkg.sha512"
     },
-    "Pomelo.EntityFrameworkCore.MySql/2.1.0": {
+    "Pomelo.EntityFrameworkCore.MySql/2.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-n+yJ9QycBmoILRj14KeaEvPGiXCRTlLYNK53Ob5Q+5+FgmT8AUaHHDo9FxKfpWm6+C7M2HdHrUHmp4etWoFI4w==",
-      "path": "pomelo.entityframeworkcore.mysql/2.1.0",
-      "hashPath": "pomelo.entityframeworkcore.mysql.2.1.0.nupkg.sha512"
+      "sha512": "sha512-V/W72zl2iWUWdSvj0c9chzssv9OUdSbEiEeOmP3D5Co5CbAtOiyyFwov0hVN+D/VNGhUQGszUltIWuoYEjTHhQ==",
+      "path": "pomelo.entityframeworkcore.mysql/2.1.1",
+      "hashPath": "pomelo.entityframeworkcore.mysql.2.1.1.nupkg.sha512"
     },
     "Pomelo.JsonObject/1.1.1": {
       "type": "package",

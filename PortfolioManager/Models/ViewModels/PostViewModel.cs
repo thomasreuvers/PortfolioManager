@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace PortfolioManager.Models.ViewModels
 {
@@ -17,5 +18,9 @@ namespace PortfolioManager.Models.ViewModels
         public DateTime PublishDate { get; set; }
 
         public string Action { get; set; }
+
+        public string MainImageFilePath { get; set; }
+
+        public IFormFile MainImage { get; set; }
     }
 }

@@ -12658,11 +12658,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Thomas\\source\\repos\\PortfolioManager\\PortfolioManager\\PortfolioManager.csproj",
+      "projectUniqueName": "C:\\Users\\Thomas\\Documents\\GitHub\\PortfolioManager\\PortfolioManager\\PortfolioManager.csproj",
       "projectName": "PortfolioManager",
-      "projectPath": "C:\\Users\\Thomas\\source\\repos\\PortfolioManager\\PortfolioManager\\PortfolioManager.csproj",
+      "projectPath": "C:\\Users\\Thomas\\Documents\\GitHub\\PortfolioManager\\PortfolioManager\\PortfolioManager.csproj",
       "packagesPath": "C:\\Users\\Thomas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Thomas\\source\\repos\\PortfolioManager\\PortfolioManager\\obj\\",
+      "outputPath": "C:\\Users\\Thomas\\Documents\\GitHub\\PortfolioManager\\PortfolioManager\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
