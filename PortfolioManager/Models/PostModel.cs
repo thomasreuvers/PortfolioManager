@@ -21,5 +21,9 @@ namespace PortfolioManager.Models
         public DateTime PublishDate { get; set; }
 
         public string UserKey { get; set; }
+
+        public string MainImageFilePath { get; set; }
+
+        public string MainImagePath { get; set; }
     }
 }

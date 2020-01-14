@@ -102,7 +102,7 @@ namespace PortfolioManager.Controllers
             if (IsUserApproved())
             {
                 var postModels = _context.Posts.Where(p => p.UserId.Equals(this.User.FindFirstValue(ClaimTypes.NameIdentifier))).ToList();
-                var viewModels = postModels.Select(post => new PostViewModel { Id = post.Id, Content = post.Content.Replace("<br />", "\r\n"), PostName = post.PostName, PublishDate = post.PublishDate }).ToList();
+                var viewModels = postModels.Select(post => new PostViewModel { Id = post.Id, Content = post.Content.Replace("<br />", "\r\n"), PostName = post.PostName, PublishDate = post.PublishDate, MainImageFilePath = post.MainImageFilePath != null ? post.MainImageFilePath.Replace($"{Request.Host}", "") : "" }).ToList();
 
                 return View(viewModels);
             }
@@ -126,6 +126,16 @@ namespace PortfolioManager.Controllers
                         if (model != null)
                         {
                             _context.Posts.Remove(model);
+
+                            // Delete old profile picture if exists
+                            if (!string.IsNullOrWhiteSpace(model.MainImageFilePath))
+                            {
+                                if (System.IO.File.Exists(model.MainImagePath))
+                                {
+                                    System.IO.File.Delete(model.MainImagePath);
+                                }
+                            }
+
                             _context.SaveChanges();
                             ViewBag.IsSuccess = true;
                         }
@@ -146,6 +156,24 @@ namespace PortfolioManager.Controllers
                                 Content = viewModel.Content.Replace("\r\n", "<br />"),
                                 PublishDate = DateTime.Now
                             };
+
+                            if (viewModel.MainImage != null)
+                            {
+                                //TODO: CHECK IF FILE IS IMAGE
+                                var extension = viewModel.MainImage.FileName.Split('.')[1];
+                                var imageName = RandomString(8) + $".{extension}";
+
+                                var savePath = Path.Combine(@"C:\inetpub\wwwroot\tcms\wwwroot\userdata\images", imageName);
+
+                                using (var stream = new FileStream(savePath, FileMode.Create, FileAccess.Write))
+                                {
+                                    viewModel.MainImage.CopyTo(stream);
+                                }
+
+                                model.MainImageFilePath = $"{Request.Host}/userdata/images/{imageName}";
+                                model.MainImagePath = savePath;
+                            }
+
                             _context.Posts.Add(model);
                             _context.SaveChanges();
                             ViewBag.IsSuccess = true;
@@ -165,6 +193,39 @@ namespace PortfolioManager.Controllers
                         {
                             postInDb.PostName = viewModel.PostName;
                             postInDb.Content = viewModel.Content.Replace("\r\n", "<br />");
+
+                            #region MainImage
+
+                            if (viewModel.MainImage != null)
+                            {
+                                //TODO: CHECK IF FILE IS IMAGE
+
+                                // Delete old profile picture if exists
+                                if (!string.IsNullOrWhiteSpace(postInDb.MainImageFilePath))
+                                {
+                                    if (System.IO.File.Exists(postInDb.MainImagePath))
+                                    {
+                                        System.IO.File.Delete(postInDb.MainImagePath);
+                                    }
+                                }
+
+                                var extension = viewModel.MainImage.FileName.Split('.')[1];
+                                var imageName = RandomString(8) + $".{extension}";
+
+                                var savePath = Path.Combine(@"C:\inetpub\wwwroot\tcms\wwwroot\userdata\images", imageName);
+
+                                using (var stream = new FileStream(savePath, FileMode.Create, FileAccess.Write))
+                                {
+                                    viewModel.MainImage.CopyTo(stream);
+                                }
+
+                                postInDb.MainImageFilePath = $"{Request.Host}/userdata/images/{imageName}";
+                                postInDb.MainImagePath = savePath;
+                            }
+
+
+                            #endregion
+
                             _context.SaveChanges();
                             ViewBag.IsSuccess = true;
                         }
@@ -175,7 +236,7 @@ namespace PortfolioManager.Controllers
                     }
                 }
                 var postModels = _context.Posts.Where(p => p.UserId.Equals(this.User.FindFirstValue(ClaimTypes.NameIdentifier))).ToList();
-                var viewModels = postModels.Select(post => new PostViewModel { Id = post.Id, Content = post.Content.Replace("<br />", "\r\n"), PostName = post.PostName, PublishDate = post.PublishDate }).ToList();
+                var viewModels = postModels.Select(post => new PostViewModel { Id = post.Id, Content = post.Content.Replace("<br />", "\r\n"), PostName = post.PostName, PublishDate = post.PublishDate, MainImageFilePath = post.MainImageFilePath != null ? post.MainImageFilePath.Replace($"{Request.Host}", "") : "" }).ToList();
 
                 return View(viewModels);
             }

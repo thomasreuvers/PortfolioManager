@@ -162,29 +162,11 @@
             $("#wrapper").toggleClass("toggled");
         });
 
-        // Profile Picture Upload
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#image-preview').attr('src', e.target.result);
-                    $('#image-preview').hide();
-                    $('#file-label').text(input.files[0].name);
-                    $('#image-preview').fadeIn(650);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
         // Logout Modal
         $(".logout").on('click',
             function() {
                 $("#logout-modal").modal({ show: true, keyboard: false, backdrop: 'static' });
             });
-
-        $("#file-input").change(function () {
-            readURL(this);
-        });
 
     </script>
 </body>
