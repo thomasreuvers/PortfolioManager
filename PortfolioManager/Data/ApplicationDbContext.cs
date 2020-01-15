@@ -11,7 +11,10 @@ namespace PortfolioManager.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<PostModel> Posts { get; set; }
+        public DbSet<PostImageModel> PostImages { get; set; }
+
         public DbSet<NewsModel> News { get; set; }
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
