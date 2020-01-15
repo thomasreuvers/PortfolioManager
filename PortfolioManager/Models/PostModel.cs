@@ -9,6 +9,7 @@ namespace PortfolioManager.Models
     public class PostModel
     {
         public int Id { get; set; }
+        public string PostId { get; set; }
 
         public  string UserId { get; set; }
 
@@ -22,8 +23,8 @@ namespace PortfolioManager.Models
 
         public string UserKey { get; set; }
 
-        public string MainImageFilePath { get; set; }
+        public string MainImageUrl { get; set; }
 
-        public string MainImagePath { get; set; }
+        public string MainImageFilePath { get; set; }
     }
 }

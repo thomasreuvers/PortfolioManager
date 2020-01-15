@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting.Internal;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -128,11 +129,11 @@ namespace PortfolioManager.Controllers
                             _context.Posts.Remove(model);
 
                             // Delete old profile picture if exists
-                            if (!string.IsNullOrWhiteSpace(model.MainImageFilePath))
+                            if (!string.IsNullOrWhiteSpace(model.MainImageUrl))
                             {
-                                if (System.IO.File.Exists(model.MainImagePath))
+                                if (System.IO.File.Exists(model.MainImageFilePath))
                                 {
-                                    System.IO.File.Delete(model.MainImagePath);
+                                    System.IO.File.Delete(model.MainImageFilePath);
                                 }
                             }
 
@@ -148,9 +149,10 @@ namespace PortfolioManager.Controllers
                     {
                         if (!string.IsNullOrWhiteSpace(viewModel.PostName) && !string.IsNullOrWhiteSpace(viewModel.Content))
                         {
+
                             var model = new PostModel
                             {
-                                UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier),
+                                UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
                                 UserName = User.Identity.Name,
                                 PostName = viewModel.PostName,
                                 Content = viewModel.Content.Replace("\r\n", "<br />"),
@@ -159,7 +161,12 @@ namespace PortfolioManager.Controllers
 
                             if (viewModel.MainImage != null)
                             {
-                                //TODO: CHECK IF FILE IS IMAGE
+                                if (!UploadedFileIsImage(viewModel.MainImage))
+                                {
+                                    ViewBag.isSuccess = false;
+                                    return View();
+                                }
+
                                 var extension = viewModel.MainImage.FileName.Split('.')[1];
                                 var imageName = RandomString(8) + $".{extension}";
 
@@ -170,8 +177,8 @@ namespace PortfolioManager.Controllers
                                     viewModel.MainImage.CopyTo(stream);
                                 }
 
-                                model.MainImageFilePath = $"{Request.Host}/Userdata/images/{imageName}";
-                                model.MainImagePath = savePath;
+                                model.MainImageUrl = $"{Request.Host}/Userdata/images/{imageName}";
+                                model.MainImageFilePath = savePath;
                             }
 
                             _context.Posts.Add(model);
@@ -198,14 +205,18 @@ namespace PortfolioManager.Controllers
 
                             if (viewModel.MainImage != null)
                             {
-                                //TODO: CHECK IF FILE IS IMAGE
+                                if (!UploadedFileIsImage(viewModel.MainImage))
+                                {
+                                    ViewBag.isSuccess = false;
+                                    return View();
+                                }
 
                                 // Delete old profile picture if exists
-                                if (!string.IsNullOrWhiteSpace(postInDb.MainImageFilePath))
+                                if (!string.IsNullOrWhiteSpace(postInDb.MainImageUrl))
                                 {
-                                    if (System.IO.File.Exists(postInDb.MainImagePath))
+                                    if (System.IO.File.Exists(postInDb.MainImageFilePath))
                                     {
-                                        System.IO.File.Delete(postInDb.MainImagePath);
+                                        System.IO.File.Delete(postInDb.MainImageFilePath);
                                     }
                                 }
 
@@ -219,8 +230,8 @@ namespace PortfolioManager.Controllers
                                     viewModel.MainImage.CopyTo(stream);
                                 }
 
-                                postInDb.MainImageFilePath = $"{Request.Host}/Userdata/images/{imageName}";
-                                postInDb.MainImagePath = savePath;
+                                postInDb.MainImageUrl = $"{Request.Host}/Userdata/images/{imageName}";
+                                postInDb.MainImageFilePath = savePath;
                             }
 
 
@@ -498,15 +509,14 @@ namespace PortfolioManager.Controllers
             var user = _context.Users.FirstOrDefault(x => x.Id.Equals(this.User.FindFirstValue(ClaimTypes.NameIdentifier)));
             var model = new SettingsViewModel();
 
-            if (user != null)
-            {
-                model.Username = user.UserName;
-                model.Email = user.Email;
+            if (user == null) return View(model);
 
-                if (!string.IsNullOrWhiteSpace(user.ImageFileName))
-                {
-                    model.ImageFileName = user.ImageFileName;
-                }
+            model.Username = user.UserName;
+            model.Email = user.Email;
+
+            if (!string.IsNullOrWhiteSpace(user.ImageFileName))
+            {
+                model.ImageFileName = user.ImageFileName;
             }
 
             return View(model);
@@ -534,7 +544,11 @@ namespace PortfolioManager.Controllers
                     var extension = viewModel.ProfilePicture.FileName.Split('.')[1];
                     var imageName = RandomString(8) + $".{extension}";
 
-                    //TODO: CHECK IF FILE IS IMAGE OR GIF
+                    if (!UploadedFileIsImage(viewModel.ProfilePicture))
+                    {
+                        return View(model);
+                    }
+
                     var savePath = Path.Combine(@"C:\Userdata\images", imageName);
 
                     using (var stream = new FileStream(savePath, FileMode.Create, FileAccess.Write))
@@ -562,19 +576,18 @@ namespace PortfolioManager.Controllers
 
                 ViewBag.IsSuccess = true;
 
-                if (viewModel.OldPassword != null && viewModel.NewPassword != null)
-                {
-                    if (_passwordHasher.VerifyHashedPassword(new ApplicationUser(), user.PasswordHash, viewModel.OldPassword) == PasswordVerificationResult.Success)
-                    {
-                        user.PasswordHash = _passwordHasher.HashPassword(new ApplicationUser(), viewModel.NewPassword);
-                        _context.SaveChanges();
-                    }
-                    else
-                    {
-                        ViewBag.IsSuccess = false;
-                    }
-                }
+                if (viewModel.OldPassword == null || viewModel.NewPassword == null) return View(model);
 
+                if (_passwordHasher.VerifyHashedPassword(new ApplicationUser(), user.PasswordHash, viewModel.OldPassword) == PasswordVerificationResult.Success)
+                {
+                    user.PasswordHash = _passwordHasher.HashPassword(new ApplicationUser(), viewModel.NewPassword);
+                    //TODO: SEND MAIL
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    ViewBag.IsSuccess = false;
+                }
             }
 
             return View(model);
@@ -605,6 +618,35 @@ namespace PortfolioManager.Controllers
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[_random.Next(s.Length)]).ToArray());
+        }
+
+        /*
+         * This method checks if a uploaded file is an image
+         */
+        public bool UploadedFileIsImage(IFormFile file)
+        {
+            // check file mimetype
+            if (!string.Equals(file.ContentType, "image/jpg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(file.ContentType, "image/jpeg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(file.ContentType, "image/pjpeg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(file.ContentType, "image/gif", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(file.ContentType, "image/x-png", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(file.ContentType, "image/png", StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            // Check file extension
+            var postedFileExtension = Path.GetExtension(file.FileName);
+            if (!string.Equals(postedFileExtension, ".jpg", StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(postedFileExtension, ".png", StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(postedFileExtension, ".gif", StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(postedFileExtension, ".jpeg", StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
