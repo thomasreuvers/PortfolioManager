@@ -137,3 +137,4 @@ C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\obj\Release\n
 C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\obj\Release\netcoreapp2.1\PortfolioManager.dll
 C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\obj\Release\netcoreapp2.1\PortfolioManager.pdb
 C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\obj\Release\netcoreapp2.1\PortfolioManager.csproj.CopyComplete
+C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\obj\Release\netcoreapp2.1\UserSecretsAssemblyInfo.cs

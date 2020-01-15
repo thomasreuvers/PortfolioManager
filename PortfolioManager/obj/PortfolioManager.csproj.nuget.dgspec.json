@@ -70,14 +70,6 @@
               "target": "Package",
               "version": "[2.1.1, )"
             },
-            "Syncfusion.EJ2.AspNet.Core": {
-              "target": "Package",
-              "version": "[17.4.0.43, )"
-            },
-            "Syncfusion.EJ2.JavaScript": {
-              "target": "Package",
-              "version": "[17.4.0.43, )"
-            },
             "jquery-qrcode": {
               "target": "Package",
               "version": "[1.0.0, )"
