@@ -380,7 +380,7 @@ else if (ViewBag.IsSuccess == false)
                 ");
             EndContext();
             BeginContext(3840, 426, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d1b1914c6ecd4debb3f6ceec64a5143f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ace527a5289499ab2126d26408490d1", async() => {
                 BeginContext(3901, 358, true);
                 WriteLiteral(@"
                     <button type=""button"" class=""btn btn-secondary"" data-dismiss=""modal"">Close</button>
@@ -433,7 +433,7 @@ else if (ViewBag.IsSuccess == false)
                 ");
             EndContext();
             BeginContext(5108, 431, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f2ee62f108954d7ba197a0ef538db6fe", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ee4af1b4d52b4bb6ab7b31ba90a823f3", async() => {
                 BeginContext(5169, 363, true);
                 WriteLiteral(@"
                     <button type=""button"" class=""btn btn-secondary"" data-dismiss=""modal"">Close</button>
@@ -486,7 +486,7 @@ else if (ViewBag.IsSuccess == false)
                 ");
             EndContext();
             BeginContext(6365, 421, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "551ed75f381b4afd953543e97f8bcb72", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1966e9740c0147afbb33920a7eaf4bcb", async() => {
                 BeginContext(6426, 353, true);
                 WriteLiteral(@"
                     <button type=""button"" class=""btn btn-secondary"" data-dismiss=""modal"">Close</button>
@@ -535,7 +535,7 @@ else if (ViewBag.IsSuccess == false)
             ");
             EndContext();
             BeginContext(7415, 1521, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "245c3bebf6874eefa3a110bdee388f73", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ffd3dee0fc864519b910a1b7bc1c9e96", async() => {
                 BeginContext(7476, 836, true);
                 WriteLiteral(@"
                 <input name=""Action"" type=""hidden"" value=""edit"" />
@@ -555,7 +555,7 @@ else if (ViewBag.IsSuccess == false)
                             ");
                 EndContext();
                 BeginContext(8312, 54, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "94807d0318554636b86e504a2c328ce5", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "79d300ed7cb74a528eba5044cc7d1462", async() => {
                     BeginContext(8353, 4, true);
                     WriteLiteral("None");
                     EndContext();
@@ -587,7 +587,7 @@ else if (ViewBag.IsSuccess == false)
                 WriteLiteral("                                ");
                 EndContext();
                 BeginContext(8497, 44, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1c52c0f220fa49b4a7a60742161a51fe", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cd419feb4571465881e947439d5c5168", async() => {
                     BeginContext(8523, 9, false);
 #line 181 "C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\Views\Home\Users.cshtml"
                                                     Write(role.Name);

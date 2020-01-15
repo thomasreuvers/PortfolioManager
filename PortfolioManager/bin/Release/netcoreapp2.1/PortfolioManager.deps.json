@@ -30,6 +30,7 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.10",
           "Newtonsoft.Json": "12.0.3",
           "Pomelo.EntityFrameworkCore.MySql": "2.1.1",
+          "Syncfusion.EJ2.AspNet.Core": "17.4.0.43",
           "jquery-qrcode": "1.0.0"
         },
         "runtime": {
@@ -263,6 +264,32 @@
         },
         "compile": {
           "lib/netstandard1.3/Pomelo.JsonObject.dll": {}
+        }
+      },
+      "Syncfusion.EJ2.AspNet.Core/17.4.0.43": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "Syncfusion.Licensing": "17.4.0.43"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.EJ2.dll": {
+            "assemblyVersion": "17.4.0.43",
+            "fileVersion": "17.4.0.43"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.EJ2.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/17.4.0.43": {
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "17.4.0.43",
+            "fileVersion": "17.4.0.43"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Licensing.dll": {}
         }
       },
       "System.Composition/1.0.31": {
@@ -3643,6 +3670,20 @@
       "sha512": "sha512-erkYG/OW1LloSwDFGeS9MvVjy1FLmaV3k8GK/GMR8D3sSDEylZogoLdLiaOFc92+zTen92rG6XGiioNacSlg0A==",
       "path": "pomelo.jsonobject/1.1.1",
       "hashPath": "pomelo.jsonobject.1.1.1.nupkg.sha512"
+    },
+    "Syncfusion.EJ2.AspNet.Core/17.4.0.43": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FCsuoo3zKSoNLuQaLLmLXypsIqE/oBkYEI6MXMiVxs7cn1VbrqPIovOPvC0wd0H8d+IlCtKbsrv/W9Md6q6tog==",
+      "path": "syncfusion.ej2.aspnet.core/17.4.0.43",
+      "hashPath": "syncfusion.ej2.aspnet.core.17.4.0.43.nupkg.sha512"
+    },
+    "Syncfusion.Licensing/17.4.0.43": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4CSeT3CuLxTDiPXrEXlrMVU0Yl3zKeAk6IQ6tw9myqEjh/sdH6VplDmqlaEzznwGEntfEGB3gdOYViaPa9GktQ==",
+      "path": "syncfusion.licensing/17.4.0.43",
+      "hashPath": "syncfusion.licensing.17.4.0.43.nupkg.sha512"
     },
     "System.Composition/1.0.31": {
       "type": "package",

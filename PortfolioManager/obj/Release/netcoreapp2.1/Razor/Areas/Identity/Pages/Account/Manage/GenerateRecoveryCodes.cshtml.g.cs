@@ -80,7 +80,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("<div>\r\n    <h4 class=\"text-center\">Change your account settings</h4>\r\n    <hr />\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\">\r\n            ");
             EndContext();
             BeginContext(377, 29, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "6c4593e56faf47adb1d977e2ece13e59", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "90e78b5a84af44149e89c268a5d337eb", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -130,7 +130,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
                     used in an authenticator app you should ");
             EndContext();
             BeginContext(1188, 69, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b384e4b61f3148b1bac3e6cf906c230e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0102956243204ce7a4f055529cf845eb", async() => {
                 BeginContext(1223, 30, true);
                 WriteLiteral("reset your authenticator keys.");
                 EndContext();
@@ -152,7 +152,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("\r\n                </p>\r\n            </div>\r\n            <div>\r\n                ");
             EndContext();
             BeginContext(1336, 163, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0cd804b6923a45319dadc005950e1a97", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "efbaef4163214e9ca182db92ed780700", async() => {
                 BeginContext(1375, 117, true);
                 WriteLiteral("\r\n                    <button class=\"btn btn-danger\" type=\"submit\">Generate Recovery Codes</button>\r\n                ");
                 EndContext();

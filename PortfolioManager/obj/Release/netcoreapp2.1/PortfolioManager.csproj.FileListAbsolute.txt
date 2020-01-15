@@ -81,7 +81,6 @@ C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\bin\Release\n
 C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\obj\Release\netcoreapp2.1\PortfolioManager.csprojAssemblyReference.cache
 C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\obj\Release\netcoreapp2.1\PortfolioManager.RazorAssemblyInfo.cache
 C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\obj\Release\netcoreapp2.1\PortfolioManager.RazorAssemblyInfo.cs
-C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\obj\Release\netcoreapp2.1\UserSecretsAssemblyInfo.cs
 C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\obj\Release\netcoreapp2.1\PortfolioManager.AssemblyInfoInputs.cache
 C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\obj\Release\netcoreapp2.1\PortfolioManager.AssemblyInfo.cs
 C:\Users\Thomas\Documents\GitHub\PortfolioManager\PortfolioManager\obj\Release\netcoreapp2.1\PortfolioManager.TagHelpers.input.cache

@@ -99,7 +99,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("                    <div class=\"alert alert-danger\">\r\n                        <strong>You have no recovery codes left.</strong>\r\n                        <p>You must ");
             EndContext();
             BeginContext(715, 78, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "193f6c3a9d8d4c83b9f1f0fdf4b5156f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "90b45c75735748478d8316166f662b44", async() => {
                 BeginContext(753, 36, true);
                 WriteLiteral("generate a new set of recovery codes");
                 EndContext();
@@ -131,7 +131,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("                    <div class=\"alert alert-danger\">\r\n                        <strong>You have 1 recovery code left.</strong>\r\n                        <p>You can ");
             EndContext();
             BeginContext(1127, 78, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d968fe4e2cc243e7b0ce9e4f2308cbcb", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d2a664b89779469282351afedf72ba02", async() => {
                 BeginContext(1165, 36, true);
                 WriteLiteral("generate a new set of recovery codes");
                 EndContext();
@@ -173,7 +173,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral(" recovery codes left.</strong>\r\n                        <p>You should ");
             EndContext();
             BeginContext(1524, 78, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "81d0471922a44a9da856d960ddc60e1f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "701c9ff1a7a8451da3389df588044f42", async() => {
                 BeginContext(1562, 36, true);
                 WriteLiteral("generate a new set of recovery codes");
                 EndContext();
@@ -206,7 +206,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("                    ");
             EndContext();
             BeginContext(1745, 179, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "071edc16cfc542a8ad99c30587a00c5e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2cf78af6687344e0847b63bad643a5ae", async() => {
                 BeginContext(1795, 122, true);
                 WriteLiteral("\r\n                        <button type=\"submit\" class=\"btn btn-default\">Forget this browser</button>\r\n                    ");
                 EndContext();
@@ -239,7 +239,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("                ");
             EndContext();
             BeginContext(1961, 65, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3b9ee8a17aba4536b5cc0704a34e33d1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3b3dc0dbd8d54057a6267500559470f6", async() => {
                 BeginContext(2011, 11, true);
                 WriteLiteral("Disable 2FA");
                 EndContext();
@@ -262,7 +262,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(2044, 86, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e935140aee4f457e8caea59874c03d17", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "182c8a931a034117b2d6f3fbddeed9e0", async() => {
                 BeginContext(2106, 20, true);
                 WriteLiteral("Reset recovery codes");
                 EndContext();
@@ -302,7 +302,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("                ");
             EndContext();
             BeginContext(2263, 111, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "137aefcf2a704a0da64b2b7fd69554c1", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "acf45d2d2dc04818b637417e779c8db3", async() => {
                 BeginContext(2349, 21, true);
                 WriteLiteral("Add authenticator app");
                 EndContext();
@@ -336,7 +336,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("                ");
             EndContext();
             BeginContext(2440, 113, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6463f29c17924a16a364f1d27fe6862f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cf48dfde288a41869bcff077a9b3f211", async() => {
                 BeginContext(2526, 23, true);
                 WriteLiteral("Setup authenticator app");
                 EndContext();
@@ -360,7 +360,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(2571, 110, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "341938984bf046b884f82563606f55f5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fffd8de0e1c1473f9652fa4c53d3b86e", async() => {
                 BeginContext(2654, 23, true);
                 WriteLiteral("Reset authenticator app");
                 EndContext();

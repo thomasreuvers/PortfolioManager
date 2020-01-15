@@ -3054,6 +3054,31 @@
           }
         }
       },
+      "Syncfusion.EJ2.AspNet.Core/17.4.0.43": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "[9.0.1, 13.0.0)",
+          "Syncfusion.Licensing": "17.4.0.43"
+        },
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.EJ2.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.EJ2.dll": {}
+        }
+      },
+      "Syncfusion.EJ2.JavaScript/17.4.0.43": {
+        "type": "package"
+      },
+      "Syncfusion.Licensing/17.4.0.43": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Syncfusion.Licensing.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -8105,6 +8130,72 @@
         "version.txt"
       ]
     },
+    "Syncfusion.EJ2.AspNet.Core/17.4.0.43": {
+      "sha512": "FCsuoo3zKSoNLuQaLLmLXypsIqE/oBkYEI6MXMiVxs7cn1VbrqPIovOPvC0wd0H8d+IlCtKbsrv/W9Md6q6tog==",
+      "type": "package",
+      "path": "syncfusion.ej2.aspnet.core/17.4.0.43",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net451/Syncfusion.EJ2.dll",
+        "lib/netstandard1.6/Syncfusion.EJ2.dll",
+        "lib/netstandard2.0/Syncfusion.EJ2.dll",
+        "lib/netstandard2.1/Syncfusion.EJ2.dll",
+        "syncfusion.ej2.aspnet.core.17.4.0.43.nupkg.sha512",
+        "syncfusion.ej2.aspnet.core.nuspec"
+      ]
+    },
+    "Syncfusion.EJ2.JavaScript/17.4.0.43": {
+      "sha512": "h2iUZN5mTMtMltUOXzqCR83SnhASRHko6h1ubTX15XGBLITS1tbSEdIpnNLvRPOUxKBwQnIo1TkaIrqHtnJzlQ==",
+      "type": "package",
+      "path": "syncfusion.ej2.javascript/17.4.0.43",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/Content/ej2/bootstrap.css",
+        "content/Content/ej2/bootstrap4.css",
+        "content/Content/ej2/compatibility/bootstrap.css",
+        "content/Content/ej2/compatibility/bootstrap4.css",
+        "content/Content/ej2/compatibility/fabric.css",
+        "content/Content/ej2/compatibility/highcontrast.css",
+        "content/Content/ej2/compatibility/material.css",
+        "content/Content/ej2/fabric.css",
+        "content/Content/ej2/highcontrast.css",
+        "content/Content/ej2/material.css",
+        "content/Scripts/ej2/ej2.d.ts",
+        "content/Scripts/ej2/ej2.min.js",
+        "content/Scripts/ej2/ej2.min.js.map",
+        "syncfusion.ej2.javascript.17.4.0.43.nupkg.sha512",
+        "syncfusion.ej2.javascript.nuspec"
+      ]
+    },
+    "Syncfusion.Licensing/17.4.0.43": {
+      "sha512": "4CSeT3CuLxTDiPXrEXlrMVU0Yl3zKeAk6IQ6tw9myqEjh/sdH6VplDmqlaEzznwGEntfEGB3gdOYViaPa9GktQ==",
+      "type": "package",
+      "path": "syncfusion.licensing/17.4.0.43",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10/Syncfusion.Licensing.dll",
+        "lib/Xamarin.Mac/Syncfusion.Licensing.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Licensing.dll",
+        "lib/net20/Syncfusion.Licensing.dll",
+        "lib/net35/Syncfusion.Licensing.dll",
+        "lib/net40/Syncfusion.Licensing.dll",
+        "lib/net45/Syncfusion.Licensing.dll",
+        "lib/net451/Syncfusion.Licensing.dll",
+        "lib/net46/Syncfusion.Licensing.dll",
+        "lib/netcoreapp3.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.2/Syncfusion.Licensing.dll",
+        "lib/netstandard1.4/Syncfusion.Licensing.dll",
+        "lib/netstandard2.0/Syncfusion.Licensing.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Licensing.dll",
+        "lib/uap10.0/Syncfusion.Licensing.dll",
+        "syncfusion.licensing.17.4.0.43.nupkg.sha512",
+        "syncfusion.licensing.nuspec"
+      ]
+    },
     "System.AppContext/4.3.0": {
       "sha512": "ADVlsAYWF7bFM1CSAKde5TtTG4GuOLfhUNAvxxwicjZtawenaq/YMgrxZHbQhO98DyITNJnclbjDtB/TIA/V2g==",
       "type": "package",
@@ -12648,6 +12739,8 @@
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.1.10",
       "Newtonsoft.Json >= 12.0.3",
       "Pomelo.EntityFrameworkCore.MySql >= 2.1.1",
+      "Syncfusion.EJ2.AspNet.Core >= 17.4.0.43",
+      "Syncfusion.EJ2.JavaScript >= 17.4.0.43",
       "jquery-qrcode >= 1.0.0"
     ]
   },
@@ -12720,6 +12813,14 @@
           "Pomelo.EntityFrameworkCore.MySql": {
             "target": "Package",
             "version": "[2.1.1, )"
+          },
+          "Syncfusion.EJ2.AspNet.Core": {
+            "target": "Package",
+            "version": "[17.4.0.43, )"
+          },
+          "Syncfusion.EJ2.JavaScript": {
+            "target": "Package",
+            "version": "[17.4.0.43, )"
           },
           "jquery-qrcode": {
             "target": "Package",
