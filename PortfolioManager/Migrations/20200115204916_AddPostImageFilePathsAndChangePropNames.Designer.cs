@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PortfolioManager.Data;
 
 namespace PortfolioManager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200115204916_AddPostImageFilePathsAndChangePropNames")]
+    partial class AddPostImageFilePathsAndChangePropNames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,24 +202,6 @@ namespace PortfolioManager.Migrations
                     b.ToTable("News");
                 });
 
-            modelBuilder.Entity("PortfolioManager.Models.PostImageModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ImageFilePath");
-
-                    b.Property<string>("ImageUrl");
-
-                    b.Property<string>("PostId");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PostImages");
-                });
-
             modelBuilder.Entity("PortfolioManager.Models.PostModel", b =>
                 {
                     b.Property<int>("Id")
@@ -229,7 +213,7 @@ namespace PortfolioManager.Migrations
 
                     b.Property<string>("MainImageUrl");
 
-                    b.Property<string>("PostId");
+                    b.Property<string>("PostImageFilePaths");
 
                     b.Property<string>("PostName");
 

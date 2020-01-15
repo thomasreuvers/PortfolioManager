@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Pages.Internal.Account.Manage;
 using Microsoft.AspNetCore.Mvc;
 using PortfolioManager.Data;
 using PortfolioManager.Models;
@@ -33,5 +34,6 @@ namespace PortfolioManager.Controllers.Api
             return posts;
 
         }
+
     }
 }
