@@ -64,11 +64,11 @@ else if (ViewBag.IsSuccess == false)
         <div class="text-center">
             @if (Model.ImageFileName != null)
             {
-                <img id="image-preview" src="~/@Model.ImageFileName" alt="user-profile-picture" width="100" height="100" style="border-radius: 50%" />
+                <img id="image-preview" src="~/@Model.ImageFileName" alt="user-profile-picture" width="100" height="100" style="border-radius: 50%; object-fit: cover;" />
             }
             else
             {
-                <img id="image-preview" alt="user-profile-picture" width="100" height="100" style="border-radius: 50%" />
+                <img id="image-preview" alt="user-profile-picture" width="100" height="100" style="border-radius: 50%; object-fit: cover;" />
             }
         </div>
         <br />
@@ -85,6 +85,7 @@ else if (ViewBag.IsSuccess == false)
     <hr />
 
     <!-- Hier komt de 2factor partial -->
+    <p>@ViewBag.Error</p>
 
 </div>
 
