@@ -26,10 +26,10 @@ namespace PortfolioManager.Controllers.Api
 
         [HttpGet]
         [Route("getall")]
-        public string GetAll()
+        public List<PostModel> GetAll()
         {
 
-            var posts = _context.Posts.FirstOrDefault(x => x.Id.Equals(14))?.PostName;
+            var posts = _context.Posts.Where(x => x.UserName == "thomas").ToList();
             return posts;
 
         }

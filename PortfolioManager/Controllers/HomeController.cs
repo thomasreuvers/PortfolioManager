@@ -163,14 +163,14 @@ namespace PortfolioManager.Controllers
                                 var extension = viewModel.MainImage.FileName.Split('.')[1];
                                 var imageName = RandomString(8) + $".{extension}";
 
-                                var savePath = Path.Combine(@"C:\inetpub\wwwroot\tcms\wwwroot\userdata\images", imageName);
+                                var savePath = Path.Combine(@"C:\Userdata\images", imageName);
 
                                 using (var stream = new FileStream(savePath, FileMode.Create, FileAccess.Write))
                                 {
                                     viewModel.MainImage.CopyTo(stream);
                                 }
 
-                                model.MainImageFilePath = $"{Request.Host}/userdata/images/{imageName}";
+                                model.MainImageFilePath = $"{Request.Host}/Userdata/images/{imageName}";
                                 model.MainImagePath = savePath;
                             }
 
@@ -212,14 +212,14 @@ namespace PortfolioManager.Controllers
                                 var extension = viewModel.MainImage.FileName.Split('.')[1];
                                 var imageName = RandomString(8) + $".{extension}";
 
-                                var savePath = Path.Combine(@"C:\inetpub\wwwroot\tcms\wwwroot\userdata\images", imageName);
+                                var savePath = Path.Combine(@"C:\Userdata\images", imageName);
 
                                 using (var stream = new FileStream(savePath, FileMode.Create, FileAccess.Write))
                                 {
                                     viewModel.MainImage.CopyTo(stream);
                                 }
 
-                                postInDb.MainImageFilePath = $"{Request.Host}/userdata/images/{imageName}";
+                                postInDb.MainImageFilePath = $"{Request.Host}/Userdata/images/{imageName}";
                                 postInDb.MainImagePath = savePath;
                             }
 
@@ -535,14 +535,14 @@ namespace PortfolioManager.Controllers
                     var imageName = RandomString(8) + $".{extension}";
 
                     //TODO: CHECK IF FILE IS IMAGE OR GIF
-                    var savePath = Path.Combine(@"C:\inetpub\wwwroot\tcms\wwwroot\userdata\images", imageName);
+                    var savePath = Path.Combine(@"C:\Userdata\images", imageName);
 
                     using (var stream = new FileStream(savePath, FileMode.Create, FileAccess.Write))
                     {
                         viewModel.ProfilePicture.CopyTo(stream);
                     }
 
-                    user.ImageFileName = $"userdata/images/{imageName}";
+                    user.ImageFileName = $"Userdata/images/{imageName}";
                     user.ImageFilePath = savePath;
                     _context.SaveChanges();
                 }
