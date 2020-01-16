@@ -164,8 +164,10 @@ namespace PortfolioManager.Controllers
                             {
                                 if (!UploadedFileIsImage(viewModel.MainImage))
                                 {
+                                    var models = _context.Posts.Where(p => p.UserId.Equals(this.User.FindFirstValue(ClaimTypes.NameIdentifier))).ToList();
+                                    var vModels = models.Select(post => new PostViewModel { Id = post.Id, Content = post.Content.Replace("<br />", "\r\n"), PostName = post.PostName, PublishDate = post.PublishDate, MainImageUrl = post.MainImageUrl != null ? post.MainImageUrl.Replace($"{Request.Host}", "") : "" }).ToList();
                                     ViewBag.isSuccess = false;
-                                    return View();
+                                    return View(vModels);
                                 }
 
                                 var extension = viewModel.MainImage.FileName.Split('.')[1];
@@ -208,8 +210,10 @@ namespace PortfolioManager.Controllers
                             {
                                 if (!UploadedFileIsImage(viewModel.MainImage))
                                 {
+                                    var models = _context.Posts.Where(p => p.UserId.Equals(this.User.FindFirstValue(ClaimTypes.NameIdentifier))).ToList();
+                                    var vModels= models.Select(post => new PostViewModel { Id = post.Id, Content = post.Content.Replace("<br />", "\r\n"), PostName = post.PostName, PublishDate = post.PublishDate, MainImageUrl = post.MainImageUrl != null ? post.MainImageUrl.Replace($"{Request.Host}", "") : "" }).ToList();
                                     ViewBag.isSuccess = false;
-                                    return View();
+                                    return View(vModels);
                                 }
 
                                 // Delete old profile picture if exists
