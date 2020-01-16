@@ -85,7 +85,7 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("<div>\r\n    <h4 class=\"text-center\">Change your account settings</h4>\r\n    <hr />\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\">\r\n            ");
             EndContext();
             BeginContext(272, 29, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "33d7aa0bbc064456a9fee0a217ce04b5", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b82a611d060d412584023fe4678df418", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -151,12 +151,12 @@ using PortfolioManager.Areas.Identity.Pages.Account.Manage;
             WriteLiteral("                                    ");
             EndContext();
             BeginContext(938, 619, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d0ba8b7742aa4728a417ed68a9252310", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fe5b47dbf91a456c9b40b3d11727a8c9", async() => {
                 BeginContext(1007, 93, true);
                 WriteLiteral("\r\n                                        <div>\r\n                                            ");
                 EndContext();
                 BeginContext(1100, 75, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "edc4e4d230964e6d9e9b3c5ee710e006", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b277b5c6a81a4d2d868d96ea9670a114", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -183,7 +183,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                                            ");
                 EndContext();
                 BeginContext(1221, 71, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "703f9350e03d41499a81694f72ee3ba1", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "fd0884533cb94942b9b80ea2b5be9ba9", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -294,7 +294,7 @@ WriteAttributeValue(" ", 1402, login.LoginProvider, 1403, 20, false);
             WriteLiteral("                <h4>Add another service to log in.</h4>\r\n                <hr />\r\n                ");
             EndContext();
             BeginContext(2069, 618, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "85d8c1d16f994699bf04df90a6e128be", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bf28d44036494490affd0b9c6f6bac49", async() => {
                 BeginContext(2163, 79, true);
                 WriteLiteral("\r\n                    <div id=\"socialLoginList\">\r\n                        <p>\r\n");
                 EndContext();
