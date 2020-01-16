@@ -1,4 +1,5 @@
-﻿@model IEnumerable<PortfolioManager.Models.ViewModels.PostViewModel>
+﻿@using Microsoft.AspNetCore.Http
+@model IEnumerable<PortfolioManager.Models.ViewModels.PostViewModel>
 @{
     Layout = "_Layout";
     ViewData["ActivePage"] = "Posts";
@@ -42,7 +43,7 @@ else if (ViewBag.IsSuccess == false)
                     <td>@post.PostName</td>
                     <td>@post.PublishDate.ToString("MM/dd/yyyy hh:mm tt")</td>
                     <td>
-                        <button data-postid="@post.Id" data-postname="@post.PostName" data-postdesc="@post.Content" data-postmainimage="@post.MainImageFilePath" type="button" class="btn btn-primary edit-post"><i class="fas fa-edit"></i></button>
+                        <button data-postid="@post.Id" data-postname="@post.PostName" data-postdesc="@post.Content" data-postmainimage="@post.MainImageUrl" type="button" class="btn btn-primary edit-post"><i class="fas fa-edit"></i></button>
                         <button data-postid="@post.Id" data-postname="@post.PostName" type="button" class="btn btn-danger delete-post"><i class="far fa-trash-alt"></i></button>
                     </td>
                 </tr>

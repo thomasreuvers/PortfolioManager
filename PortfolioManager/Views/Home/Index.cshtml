@@ -19,6 +19,10 @@
                 <h5 class="card-header">Recent Post</h5>
                 <div class="card-body">
                     <h5 class="card-title">@Model.RecentPost.PostName</h5>
+                    @if (!string.IsNullOrWhiteSpace(Model.RecentPost.MainImageUrl))
+                    {
+                        <img src="@Model.RecentPost.MainImageUrl.Replace($"{Context.Request.Host}", "")" width="200" height="150" style="object-fit: cover"/>
+                    }
                     <p class="card-text">@Html.Raw(Model.RecentPost.Content)</p>
                 </div>
                 <div class="card-footer">

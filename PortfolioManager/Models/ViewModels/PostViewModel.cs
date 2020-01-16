@@ -21,6 +21,8 @@ namespace PortfolioManager.Models.ViewModels
 
         public string MainImageFilePath { get; set; }
 
+        public string MainImageUrl { get; set; }
+
         public IFormFile MainImage { get; set; }
     }
 }
