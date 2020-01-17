@@ -39,7 +39,7 @@ else if (ViewBag.IsSuccess == false)
             {
                 <tr>
                     <th scope="row">@post.Id</th>
-                    <td><img height="150" width="150" src="@post.MainImageUrl"/></td>
+                    <td><img height="150" width="150" style="object-fit: scale-down;" src="@post.MainImageUrl"/></td>
                     <td>@post.PostName</td>
                     <td>@post.PublishDate.ToString("MM/dd/yyyy hh:mm tt")</td>
                     <td>
