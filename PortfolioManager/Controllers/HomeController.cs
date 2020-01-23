@@ -64,6 +64,7 @@ namespace PortfolioManager.Controllers
                 indexViewModel.RecentPost.PostName = mostRecentPost.PostName;
                 indexViewModel.RecentPost.Content = mostRecentPost.Content;
                 indexViewModel.RecentPost.PublishDate = mostRecentPost.PublishDate;
+                indexViewModel.RecentPost.MainImageUrl = mostRecentPost.MainImageUrl;
             }
             else
             {
@@ -103,7 +104,7 @@ namespace PortfolioManager.Controllers
             if (IsUserApproved())
             {
                 var postModels = _context.Posts.Where(p => p.UserId.Equals(this.User.FindFirstValue(ClaimTypes.NameIdentifier))).ToList();
-                var viewModels = postModels.Select(post => new PostViewModel { Id = post.Id, Content = post.Content.Replace("<br />", "\r\n"), PostName = post.PostName, PublishDate = post.PublishDate, MainImageFilePath = post.MainImageFilePath != null ? post.MainImageFilePath.Replace($"{Request.Host}", "") : "" }).ToList();
+                var viewModels = postModels.Select(post => new PostViewModel { Id = post.Id, Content = post.Content.Replace("<br />", "\r\n"), PostName = post.PostName, PublishDate = post.PublishDate, MainImageUrl = post.MainImageUrl != null ? post.MainImageUrl.Replace($"{Request.Host}", "") : "" }).ToList();
 
                 return View(viewModels);
             }
@@ -163,8 +164,10 @@ namespace PortfolioManager.Controllers
                             {
                                 if (!UploadedFileIsImage(viewModel.MainImage))
                                 {
+                                    var models = _context.Posts.Where(p => p.UserId.Equals(this.User.FindFirstValue(ClaimTypes.NameIdentifier))).ToList();
+                                    var vModels = models.Select(post => new PostViewModel { Id = post.Id, Content = post.Content.Replace("<br />", "\r\n"), PostName = post.PostName, PublishDate = post.PublishDate, MainImageUrl = post.MainImageUrl != null ? post.MainImageUrl.Replace($"{Request.Host}", "") : "" }).ToList();
                                     ViewBag.isSuccess = false;
-                                    return View();
+                                    return View(vModels);
                                 }
 
                                 var extension = viewModel.MainImage.FileName.Split('.')[1];
@@ -207,8 +210,10 @@ namespace PortfolioManager.Controllers
                             {
                                 if (!UploadedFileIsImage(viewModel.MainImage))
                                 {
+                                    var models = _context.Posts.Where(p => p.UserId.Equals(this.User.FindFirstValue(ClaimTypes.NameIdentifier))).ToList();
+                                    var vModels= models.Select(post => new PostViewModel { Id = post.Id, Content = post.Content.Replace("<br />", "\r\n"), PostName = post.PostName, PublishDate = post.PublishDate, MainImageUrl = post.MainImageUrl != null ? post.MainImageUrl.Replace($"{Request.Host}", "") : "" }).ToList();
                                     ViewBag.isSuccess = false;
-                                    return View();
+                                    return View(vModels);
                                 }
 
                                 // Delete old profile picture if exists
@@ -247,7 +252,7 @@ namespace PortfolioManager.Controllers
                     }
                 }
                 var postModels = _context.Posts.Where(p => p.UserId.Equals(this.User.FindFirstValue(ClaimTypes.NameIdentifier))).ToList();
-                var viewModels = postModels.Select(post => new PostViewModel { Id = post.Id, Content = post.Content.Replace("<br />", "\r\n"), PostName = post.PostName, PublishDate = post.PublishDate, MainImageFilePath = post.MainImageFilePath != null ? post.MainImageFilePath.Replace($"{Request.Host}", "") : "" }).ToList();
+                var viewModels = postModels.Select(post => new PostViewModel { Id = post.Id, Content = post.Content.Replace("<br />", "\r\n"), PostName = post.PostName, PublishDate = post.PublishDate, MainImageUrl = post.MainImageUrl != null ? post.MainImageUrl.Replace($"{Request.Host}", "") : "" }).ToList();
 
                 return View(viewModels);
             }
@@ -477,6 +482,30 @@ namespace PortfolioManager.Controllers
                         ViewBag.IsSuccess = false;
                     }
                 }
+                else if (model.Action.Equals("create"))
+                {
+
+                    if (!string.IsNullOrWhiteSpace(model.UserName) && !string.IsNullOrWhiteSpace(model.Email))
+                    {
+                        var password = model.RandomPassword ? RandomString(8) : model.Password;
+
+                        var createUser =  await _userManager.CreateAsync(new ApplicationUser
+                        {
+                            UserName = model.UserName,
+                            Email = model.UserName,
+                            EmailConfirmed = model.EmailConfirmed,
+                            IsApproved = model.IsApproved
+                        }, password);
+
+                        ViewBag.IsSuccess = createUser.Succeeded;
+
+                    }
+                    else
+                    {
+                        ViewBag.isSuccess = false;
+                    }
+                    //TODO: USER IS APPROVED OR NOT, HAS ROLE OR NOT, HAS RANDOM PASSWORD OR NOT. Send mail with credentials.
+                }
             }
 
             var usersInDb = _context.Users.Where(x => x.Id != this.User.FindFirstValue(ClaimTypes.NameIdentifier)).ToList();
@@ -611,7 +640,7 @@ namespace PortfolioManager.Controllers
         }
 
         /*
-         * This method returns a random string with a length of given
+         * This method returns a random string with a given length
          */
         public string RandomString(int length)
         {

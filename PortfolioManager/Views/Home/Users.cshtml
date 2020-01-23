@@ -51,26 +51,27 @@ else if (ViewBag.IsSuccess == false)
                     {
                         <td class="danger">No</td>
                     }
-                    <td>@foreach (var role in user.UserRoles.Result)
+                    <td>
+                        @foreach (var role in user.UserRoles.Result)
                         {
                             @role
                         }
-                    </td>
-                    <td>
-                        @if (user.IsApproved)
-                        {
-                            <button data-userid="@user.Id" data-username="@user.UserName" type="button" class="btn btn-danger unapprove-user"><i class="fas fa-ban"></i></button>
-                        }
-                        else
-                        {
-                            <button data-userid="@user.Id" data-username="@user.UserName" type="button" class="btn btn-success approve-user"><i class="fas fa-check"></i></button>
+                </td>
+                <td>
+                    @if (user.IsApproved)
+                    {
+                        <button data-userid="@user.Id" data-username="@user.UserName" type="button" class="btn btn-danger unapprove-user"><i class="fas fa-ban"></i></button>
+                    }
+                    else
+                    {
+                        <button data-userid="@user.Id" data-username="@user.UserName" type="button" class="btn btn-success approve-user"><i class="fas fa-check"></i></button>
 
-                        }
-                        <button data-userid="@user.Id" data-username="@user.UserName" data-useremail="@user.Email" data-useremailconfirmed="@user.EmailConfirmed" data-userrole="@foreach(var role in user.UserRoles.Result){@role}" type="button" class="btn btn-primary edit-user"><i class="fas fa-edit"></i></button>
-                        <button data-userid="@user.Id" data-username="@user.UserName" type="button" class="btn btn-danger delete-user"><i class="far fa-trash-alt"></i></button>
-                    </td>
-                </tr>
-            }
+                    }
+                    <button data-userid="@user.Id" data-username="@user.UserName" data-useremail="@user.Email" data-useremailconfirmed="@user.EmailConfirmed" data-userrole="@foreach(var role in user.UserRoles.Result){@role}" type="button" class="btn btn-primary edit-user"><i class="fas fa-edit"></i></button>
+                    <button data-userid="@user.Id" data-username="@user.UserName" type="button" class="btn btn-danger delete-user"><i class="far fa-trash-alt"></i></button>
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
 </div>
@@ -141,7 +142,7 @@ else if (ViewBag.IsSuccess == false)
             <div class="modal-footer">
                 <form asp-controller="Home" asp-action="Users" method="post">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input name="Id" type="hidden" id="delete-userid" />
+                    <input name="Id" type="hidden" id="delete-user-id" />
                     <input name="Action" type="hidden" value="delete" />
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
@@ -171,7 +172,7 @@ else if (ViewBag.IsSuccess == false)
                     </div>
                     <div class="form-group">
                         <label name="Email">E-mail Address</label>
-                        <input type="email" name="Email" class="form-control" id="edit-user-email"/>
+                        <input type="email" name="Email" class="form-control" id="edit-user-email" />
                     </div>
                     <div class="form-group">
                         <select name="NewRole" class="custom-select" id="edit-user-roles">
@@ -186,6 +187,61 @@ else if (ViewBag.IsSuccess == false)
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Create Modal -->
+<div class="modal fade" id="create-user-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create user</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-controller="Home" asp-action="Users" method="post">
+                <input name="Action" type="hidden" value="create" />
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label name="UserName">Username</label>
+                        <input type="text" name="UserName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label name="Email">E-mail Address</label>
+                        <input type="email" name="Email" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="RandomPassword" class="custom-control-input" id="password-checkbox">
+                            <label class="custom-control-label" for="password-checkbox">Random password</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="EmailConfirmed" class="custom-control-input" id="email-checkbox">
+                            <label class="custom-control-label" for="email-checkbox">Email confirmed</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="IsApproved" class="custom-control-input" id="approved-checkbox">
+                            <label class="custom-control-label" for="approved-checkbox">Is approved</label>
+                        </div>
+                    </div>
+                    <div class="form-group" id="custom-password">
+                        <label name="Password">Custom password</label>
+                        <input type="password" name="Password" id="custom-password-box" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Create</button>
                 </div>
             </form>
         </div>
@@ -222,7 +278,7 @@ else if (ViewBag.IsSuccess == false)
                 var userId = t.data('userid');
                 var userName = t.data('username');
 
-                $('#delete-userid').val(userId);
+                $('#delete-user-id').val(userId);
                 $('#delete-username').text(userName);
 
                 $('#delete-user-modal').modal({ show: true, keyboard: false, backdrop: 'static' });
@@ -241,7 +297,7 @@ else if (ViewBag.IsSuccess == false)
                     if ($(this).text() == userRole) {
                         $(this).prop("selected", true);
                     } else {
-                        $("#default-option").prop("selected",true);
+                        $("#default-option").prop("selected", true);
                     }
                 });
 
@@ -251,5 +307,20 @@ else if (ViewBag.IsSuccess == false)
 
                 $('#edit-user-modal').modal({ show: true, keyboard: false, backdrop: 'static' });
             });
+
+        $(".create-user").on('click',
+            function () {
+                $('#create-user-modal').modal({ show: true, keyboard: false, backdrop: 'static' });
+            });
+
+        $('#password-checkbox').change(function(){
+            if (this.checked) {
+                $("#custom-password-box").val("");
+                $("#custom-password").hide();
+            } else {
+                $("#custom-password-box").val("");
+                $("#custom-password").show();
+            }
+        });
     </script>
 }
