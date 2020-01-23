@@ -482,6 +482,30 @@ namespace PortfolioManager.Controllers
                         ViewBag.IsSuccess = false;
                     }
                 }
+                else if (model.Action.Equals("create"))
+                {
+
+                    if (!string.IsNullOrWhiteSpace(model.UserName) && !string.IsNullOrWhiteSpace(model.Email))
+                    {
+                        var password = model.RandomPassword ? RandomString(8) : model.Password;
+
+                        var createUser =  await _userManager.CreateAsync(new ApplicationUser
+                        {
+                            UserName = model.UserName,
+                            Email = model.UserName,
+                            EmailConfirmed = model.EmailConfirmed,
+                            IsApproved = model.IsApproved
+                        }, password);
+
+                        ViewBag.IsSuccess = createUser.Succeeded;
+
+                    }
+                    else
+                    {
+                        ViewBag.isSuccess = false;
+                    }
+                    //TODO: USER IS APPROVED OR NOT, HAS ROLE OR NOT, HAS RANDOM PASSWORD OR NOT. Send mail with credentials.
+                }
             }
 
             var usersInDb = _context.Users.Where(x => x.Id != this.User.FindFirstValue(ClaimTypes.NameIdentifier)).ToList();

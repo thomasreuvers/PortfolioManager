@@ -24,5 +24,9 @@ namespace PortfolioManager.Models.ViewModels
 
         public bool IsApproved { get; set; }
 
+
+        public string Password { get; set; }
+        public bool RandomPassword { get; set; }
+
     }
 }

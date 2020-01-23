@@ -248,7 +248,7 @@ WriteAttributeValue("", 1400, post.MainImageUrl, 1400, 18, false);
                 ");
             EndContext();
             BeginContext(2865, 414, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9d4276e717d94b989f9955aa840068af", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "531a2a841b7249eebb9a0055c00c0aef", async() => {
                 BeginContext(2926, 346, true);
                 WriteLiteral(@"
                     <button type=""button"" class=""btn btn-secondary"" data-dismiss=""modal"">Close</button>
@@ -297,7 +297,7 @@ WriteAttributeValue("", 1400, post.MainImageUrl, 1400, 18, false);
             ");
             EndContext();
             BeginContext(3914, 1656, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "17509bdec6d3459f9d1e7e7f68b464bc", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c9b6e710d328408f932e155122d593d0", async() => {
                 BeginContext(4005, 1558, true);
                 WriteLiteral(@"
                 <input name=""Action"" type=""hidden"" value=""create"" />
@@ -372,7 +372,7 @@ WriteAttributeValue("", 1400, post.MainImageUrl, 1400, 18, false);
             ");
             EndContext();
             BeginContext(6179, 1606, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b9b2c88a41fb40daa12f7907e1777017", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f84f6673cbd0429e9bb3f3ca86293e78", async() => {
                 BeginContext(6270, 1508, true);
                 WriteLiteral(@"
                 <input name=""Action"" type=""hidden"" value=""edit"" />
